@@ -38,10 +38,12 @@ L90:
 	exit_();
     more_input();
 
+#ifdef ALLOW_SHELL_COMMANDS
     if (buffer[0] == '!') {
 	system(buffer + 1);
 	goto L5;
     }
+#endif
 
     zlast = buffer - 1;
     for (z = buffer; *z != '\0' && *z != '\n'; z++) {
