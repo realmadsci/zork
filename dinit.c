@@ -32,6 +32,8 @@ FILE *dbfile;
 #endif /* ! TEXTFILE */
 
 #ifndef LOCALTEXTFILE
+#include <unistd.h>
+#include <string.h>
 #define LOCALTEXTFILE "dtextc.dat"
 #endif
 
@@ -338,7 +340,19 @@ L10000:
     if ((dbfile = fdopen(ropen(LOCALTEXTFILE, 0), BINREAD)) == NULL &&
 	(dbfile = fdopen(ropen(TEXTFILE, 0), BINREAD)) == NULL)
 #else
-    if ((dbfile = fopen(LOCALTEXTFILE, BINREAD)) == NULL &&
+    char dbfilename[1024];
+    readlink("/proc/self/exe", dbfilename, sizeof(dbfilename));
+/* GET NAME OF EXECUTABLE SO WE CAN CHECK BESIDE IT FOR LOCALTEXTFILE */
+
+    char * lastslash = strrchr(dbfilename, '/');
+    if (lastslash) *(lastslash + 1) = '\0';
+/* TRUNCATE AFTER THE LAST SLASH */
+
+    strcat(dbfilename, LOCALTEXTFILE);
+/* APPEND LOCALTEXTFILE */
+
+    if ((dbfile = fopen(dbfilename, BINREAD)) == NULL &&
+        (dbfile = fopen(LOCALTEXTFILE, BINREAD)) == NULL &&
 	(dbfile = fopen(TEXTFILE, BINREAD)) == NULL)
 #endif
 	goto L1950;
