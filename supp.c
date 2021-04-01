@@ -29,10 +29,10 @@ extern time_t time P((time_t *));
 extern struct tm *localtime ();
 
 /* Terminate the game */
-
+extern FILE *dbfile;
 void exit_()
 {
-    score_(0);
+    if (dbfile) score_(0);
     fprintf(stderr, "The game is over.\n");
     exit(0);
 }
