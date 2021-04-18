@@ -14,12 +14,12 @@ input_lines = Path(sys.argv[2]).read_bytes().split(b'\n')
 colorama.init(strip=False) # This will make termcolor work on Windows too!
 
 def showInput(line):
-    cprint(repr(line)[2:-1], 'blue', end='')
+    cprint(repr(line)[2:-1], 'magenta', attrs=['bold'], end='')
 
 def showZork(reply):
     for rep_line in reply.decode().split('\n'):
         print()
-        cprint(rep_line, 'green', end='')
+        print(rep_line, end='')
 
 
 zork = process(zork_path)
