@@ -565,6 +565,11 @@ L34000:
     if (! (j > 0 && j <= advs_1.alnt && (k > 0 && k <= 7))) {
 	goto L2200;
     }
+    if ( (j == 1) && (k == 2) ) {
+    static const integer msgs[] = {58, 161, 636, 743, 747};
+    rspeak_(msgs[rnd_(sizeof(msgs) / sizeof(msgs[0]))]);
+    exit_();
+    }
 /* 						!INDICES VALID? */
     printf("Old = %6d      New = ", eqa[j + (k << 2) - 5]);
     (void) fflush(stdout);
