@@ -22,10 +22,6 @@ void savegm_()
 /* 						!DISABLE GAME. */
 /* Note: save file format is different for PDP vs. non-PDP versions */
 
-#ifndef ALLOW_SAVE_GAME
-goto L100; /* NO SAVES ALLOWED! */
-#endif
-
     if ((e = fopen("dsave.dat", BINWRITE)) == NULL)
 	goto L100;
 
@@ -116,10 +112,6 @@ void rstrgm_()
     prsvec_1.prswon = FALSE_;
 /* 						!DISABLE GAME. */
 /* Note: save file format is different for PDP vs. non-PDP versions */
-
-#ifndef ALLOW_SAVE_GAME
-goto L100; /* NO RESTORES ALLOWED! */
-#endif
 
     if ((e = fopen("dsave.dat", BINREAD)) == NULL)
 	goto L100;
