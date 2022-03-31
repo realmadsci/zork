@@ -428,6 +428,7 @@ L1100:
     score_(0);
 /* 						!TELL SCORE. */
     (void) fclose(dbfile);
+    dbfile = NULL;
     exit_();
 
 } /* jigsup_ */
