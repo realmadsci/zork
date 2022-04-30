@@ -17,7 +17,7 @@ def showInput(line):
     cprint(repr(line)[2:-1], 'green', attrs=['bold'], end='')
 
 def showZork(reply):
-    for rep_line in reply.decode().split('\n'):
+    for rep_line in reply.decode("ascii", errors="replace").split('\n'):
         print()
         print(rep_line, end='')
 
